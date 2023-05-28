@@ -1,14 +1,17 @@
-﻿using Verse;
+﻿using RimWorld;
+using System.Activities.Debugger;
+using System.Activities.Expressions;
+using System.Linq;
+using Verse;
 
 namespace SymbioticWeapon
 {
-    public class SymbiotKindDef : PawnKindDef
+    public class SymbiontDef : Def
     {
-        public string pairId;
-    }
+        public string pawnKindDefName;
+        public string thingDefName;
 
-    public class SymbiotThingDef : ThingDef
-    {
-        public string pairId;
+        PawnKindDef GetPawnKindInfo() => (PawnKindDef)SimbiontWeapons.SimbiontWeapons.AllDefs.Single(def => def.defName == pawnKindDefName);
+        ThingDef GetThingKindInfo() => (ThingDef)SimbiontWeapons.SimbiontWeapons.AllDefs.Single(def => def.defName == thingDefName);
     }
 }
